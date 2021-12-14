@@ -13,7 +13,7 @@ do:	li $v0,5
 	l.s $f2,const		# $f2 = 2.59375
 	mtc1 $t0,$f4
 	cvt.s.w $f4,$f4		# (float)val
-	mul.s $f0,$f2,$f4		# res = (float)val * 2.59375
+	mul.s $f0,$f2,$f4	# res = (float)val * 2.59375
 	
 	li $v0,2
 	mov.s $f12,$f0
