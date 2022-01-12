@@ -8,22 +8,24 @@
 	.globl main
 	
 main:	addi $sp,$sp,-4
-	sw $ra,0($sp)
+	sw $ra,0($sp)		# subrotina
 	
-	li $s0,212
+	li $s0,212		# (temperatura em graus Fahrenheit a ser transformada para Celsius)
 	mtc1 $s0,$f12
-	cvt.d.w $f12,$f12
+	cvt.d.w $f12,$f12	# f12 = ft
 	
-	jal f2c
+	jal f2c			# double f2c(double ft)
 	
 	mov.d $f12,$f0
 	li $v0,3
-	syscall
+	syscall			# print 
 	
-	lw $ra,0($sp)
+	lw $ra,0($sp)		# subrotina
 	addi $sp,$sp,4
 	
-	jr $ra
+	jr $ra	
+	
+	
 	
 f2c:	li $t0,5
 	li $t1,9
