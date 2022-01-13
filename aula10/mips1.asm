@@ -23,7 +23,8 @@ main:
 	
 	
 	
-xtoy:	addi $sp,$sp,-32
+xtoy:	
+	addi $sp,$sp,-32
 	sw $ra,0($sp)
 	sw $s0,4($sp)
 	sw $s1,8($sp)
