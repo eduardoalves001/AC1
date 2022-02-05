@@ -131,6 +131,17 @@ m_for:
 	l.s $f8,40($t3)
 	add.s $f6,$f6,$f8
 	
+	c.lt.s $f8,$f4
+	bc1f m_endif
+	
+	move $t4,$t3
+	mov.s $f8,$f6
+	
+m_endif:
+
+	addi $t3,$t3,44
+	j maxfor
+	
 	
 m_endfor:
 	
