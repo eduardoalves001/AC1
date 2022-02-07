@@ -140,10 +140,44 @@ m_for:
 m_endif:
 
 	addi $t3,$t3,44
-	j maxfor
+	j m_for
 	
 	
 m_endfor:
 	
+	mtc1 $a1,$f10
+	cvt.s.w $f10,$f10
+	
+	div.s $f0,$f6,$f10
+	
+	s.s $f0,0($a2)
+	
+	move $v0,$t4
+	jr $ra
 	
 print_student:
+
+	move $t0,$a0
+	lw $a0,0($t0)
+	li $v0,1
+	syscall
+	
+	lw $a0,4($t0)
+	li $v0,4
+	syscall
+	
+	lw $a0,22($t0)
+	li $v0,4
+	syscall
+	
+	l.s $f12,40($t0)
+	li $v0,2
+	syscall
+	
+	jr $ra
+	
+
+
+
+
+

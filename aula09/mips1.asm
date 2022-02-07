@@ -3,6 +3,7 @@
 
 	.data
 const:	.float 2.59375
+str:	.asciiz "\n"
 	.text
 	.globl main
 main:
@@ -22,9 +23,13 @@ do:	li $v0,5
 	mtc1 $0,$f6		# $f6 = 0
 	cvt.s.w $f6,$f6		# $f6 = 0.0
 	
+	li $v0,4
+	la $a0,str
+	syscall
+	
 	c.eq.s $f0,$f6		
 	bc1f do			# while (res != 0.0)
-	
+		
 	li $v0,0		# return 0
 
 	jr $ra
