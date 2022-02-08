@@ -68,7 +68,7 @@ main:
 	
 	li $v0,4
 	la $a0,str5
-	syscall			# \n\n
+	syscall			# confusão do crl \n\n
 	
 
 	##		printing 		##
