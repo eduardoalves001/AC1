@@ -4,7 +4,8 @@
 	
 	.align 3
 array:	.space 80
-str:	.asciiz "\nAverage: "
+str1:	.asciiz "\nAverage: "
+str2:	.asciiz "\nMax: "
 	.eqv SIZE,10
 	
 	.text
@@ -41,13 +42,26 @@ for:
 endfor:	
 	
 	li $v0,4
-	la $a0,str
+	la $a0,str1
 	syscall
 	
 	la $a0,array
 	li $a1,SIZE
 	
 	jal avrg
+	
+	mov.d $f12,$f0
+	li $v0,3
+	syscall
+	
+	li $v0,4
+	la $a0,str2
+	syscall
+	
+	la $a0,array
+	li $a1,SIZE
+	
+	jal max
 	
 	mov.d $f12,$f0
 	li $v0,3
@@ -97,5 +111,47 @@ a_efor:
 	
 	jr $ra
 
+
+
+
+
+
+max:	
+	move $t0,$a0		# $t0 = double *p
+	move $t1,$a1		# $t1 = unsigned int n
+	
+	li $t2,1		# para loop for
+	
+	l.d $f4,0($t0)		# valor max 
+	addi $t0,$t0,8		# para ler 2º valor 	
+
+
+m_for:	
+	bge $t2,$t1,m_efor	# condição para terminar loop for 
+	
+	l.d $f6,0($t0)		# ler elem do array
+	
+	c.le.d $f6,$f4		# verificar if
+	bc1t noif		# se for true então branch 
+	
+	mov.d $f4,$f6		# se não for true faz a subtituição
+
+
+noif:	
+	addi $t2,$t2,1		# i++ relativamente ao loop for
+	addi $t0,$t0,8		# próximo endereço do array
+	
+	j m_for			# loop for
+	
+	
+m_efor:	
+	mov.d $f0,$f4		# return max
+	jr $ra
+	
+	
+	
+	
+	
+	
 
 

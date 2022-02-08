@@ -6,11 +6,16 @@
 	
 	.data
 num1:	.double 0.5 
+str:	.asciiz "\nCalculo da raíz quadradade um valor x.\nValor X: "
 	.text
 	.globl main
 	
 main:	addi $sp,$sp,-4
 	sw $ra,0($sp)
+	
+	li $v0,4
+	la $a0,str
+	syscall
 	
 	li $v0,7
 	syscall
